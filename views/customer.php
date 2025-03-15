@@ -7,7 +7,7 @@
 
 <body>
     <h2>Customer Registration Form</h2>
-    <form action="submit_customer.php" method="post" enctype="multipart/form-data">
+    <form action="submit.php" method="post" enctype="multipart/form-data">
         <fieldset>
             <legend>Registration</legend>
             
@@ -56,9 +56,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="2" align="center">
+                    <td colspan="3" align="center">
                         <input type="submit" value="Register">
                         <input type="reset" value="Reset">
+                        <input type="button" value="Back to home" onclick="window.location.href='index.php'">
                     </td>
                 </tr>
             </table>
