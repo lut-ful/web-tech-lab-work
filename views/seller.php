@@ -7,7 +7,7 @@
 
 <body>
     <h2>Freelancer Registration Form</h2>
-    <form action="submit.php" method="post">
+    <form action="submit.php" method="get">
         <fieldset>
             <legend>Registration</legend>
 
@@ -19,6 +19,18 @@
                 <tr>
                     <td><label for="email">Email:</label></td>
                     <td><input type="email" id="email" name="email" required></td>
+                </tr>
+                <tr>
+                    <td><label for="password">Password:</label></td>
+                    <td><input type="password" id="password" name="password" required></td>
+                </tr>
+                <tr>
+                    <td><label for="confirm_password">Confirm Password:</label></td>
+                    <td><input type="password" id="confirm_password" name="confirm_password" required></td>
+                </tr>
+                <tr>
+                    <td><label for="profile_picture">Profile Picture:</label></td>
+                    <td><input type="file" id="profile_picture" name="profile_picture" accept="image/*"></td>
                 </tr>
                 <tr>
                     <td><label for="phone">Phone Number:</label></td>
@@ -49,7 +61,7 @@
                     <td><input type="number" id="hours" name="hours" min="1" max="168" required></td>
                 </tr>
                 <tr>
-                    <td>Preferred Payment Method:</td>
+                    <td>Preferred Withdraw Method:</td>
                     <td>
                         <input type="radio" id="paypal" name="payment" value="paypal" required> <label
                             for="paypal">PayPal</label>
@@ -60,8 +72,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td><label for="bio">Bio:</label></td>
-                    <td><textarea id="bio" name="bio" rows="4" cols="30" required></textarea></td>
+                    <td><label for="about_you">About You:</label></td>
+                    <td><textarea id="about_you" name="about_you" rows="4" cols="30" required></textarea></td>
                 </tr>
                 <tr>
                     <td><label for="terms">Agree to Terms:</label></td>
