@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Pet Valley</title>
+    <title></title>
 </head>
 
 <body>
