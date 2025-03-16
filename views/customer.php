@@ -59,6 +59,7 @@
                     <td colspan="3" align="center">
                         <input type="submit" value="Register">
                         <input type="reset" value="Reset">
+                        <input type="button" value="Back to home" onclick="window.location.href='index.php'">
                     </td>
                 </tr>
             </table>
