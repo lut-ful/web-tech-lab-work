@@ -3,6 +3,7 @@
 
 <head>
     <title>Freelancer Registration</title>
+    <link rel="stylesheet" type="text/css" href="../style/seller.css">
 </head>
 
 <body>
