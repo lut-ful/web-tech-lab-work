@@ -3,12 +3,12 @@
 
 <head>
     <title>Freelancer Registration</title>
-    <link rel="stylesheet" type="text/css" href="../style/seller.css">
+    <link rel="stylesheet" type="text/css" href="seller.css">
 </head>
 
 <body>
     <h2>Freelancer Registration Form</h2>
-    <form action="submit.php" method="POST">
+    <form action="submit.php" method="post">
         <fieldset>
             <legend>Registration</legend>
 
@@ -42,7 +42,7 @@
                     <td><input type="date" id="dob" name="dob" required></td>
                 </tr>
                 <tr>
-                    <td><label for="skills">Skills:</label></td>
+                    <td><label for="skills">Skill:</label></td>
                     <td>
                         <select id="skills" name="skills" required>
                             <option value="ml">Machine Learning</option>
