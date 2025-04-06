@@ -8,7 +8,7 @@
 
 <body>
     <h2>Freelancer Registration Form</h2>
-    <form action="submit.php" method="post">
+    <form action="submit.php" method="POST">
         <fieldset>
             <legend>Registration</legend>
 
