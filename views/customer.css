@@ -1,19 +1,18 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #eef2f7;
+    background-color: #f4f4f4;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
     margin: 0;
-    padding: 8px;
 }
 
 .container {
     background: white;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    width: 700px;
+    width: 100%;
     position: relative;
     overflow: hidden;
 }
@@ -22,36 +21,27 @@ fieldset {
     border: 2px solid #007BFF;
     padding: 15px;
     margin-bottom: 10px;
-    width: 100%;
 }
 
 legend {
     font-weight: bold;
     color: #007BFF;
-    font-size: 16px;
 }
 
 table {
     width: 100%;
-    border-spacing: 8px;
 }
 
 td {
-    padding: 6px;
+    padding: 8px;
 }
 
 input[type="text"], input[type="email"], input[type="password"], input[type="tel"], input[type="file"] {
     width: 100%;
-    max-width: 280px;
-    padding: 10px;
+    padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-}
-
-input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="tel"]:focus {
-    border-color: #007BFF;
-    outline: none;
-    box-shadow: 0px 0px 4px rgba(0, 123, 255, 0.5);
+    display: inline-block;
 }
 
 .buttons {
@@ -64,10 +54,9 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
     color: white;
     border: none;
     padding: 10px 15px;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    margin: 4px;
-    font-size: 14px;
+    margin: 5px;
 }
 
 .buttons input:hover {
