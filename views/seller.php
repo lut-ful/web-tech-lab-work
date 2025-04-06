@@ -3,6 +3,7 @@
 
 <head>
     <title>Freelancer Registration</title>
+    <link rel="stylesheet" type="text/css" href="../style/seller.css">
 </head>
 
 <body>
@@ -77,7 +78,8 @@
                 </tr>
                 <tr>
                     <td><label for="terms">Agree to Terms:</label></td>
-                    <td><input type="checkbox" id="terms" name="terms" required> I agree to the terms and conditions
+                    <td><input type="checkbox" id="terms" name="terms" required> I agree to the <a href="terms.php"
+                            target="_blank">terms and conditions</a>
                     </td>
                 </tr>
                 <tr>
