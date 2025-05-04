@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         termsAndConditions: document.getElementById("terms"),
     };
 
-    // Add event listener for form submission
+    // event listener for form submission
     form.addEventListener("submit", (event) => {
         let isFormValid = true;
 
@@ -98,8 +98,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function validatePhoneNumber(input) {
-        if (!input.value.trim() || input.value.trim().length !== 10) {
-            displayWarning(input, "Phone number must be exactly 10 digits.");
+        if (!input.value.trim() || input.value.trim().length !== 10 || isNaN(input.value.trim())) {
+            displayWarning(input, "Phone number must be exactly 10 digits and contain only numbers.");
             return false;
         }
         return true;
@@ -139,10 +139,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function validatePaymentMethod(paymentInputs) {
-        if (![...paymentInputs].some(payment => payment.checked)) {
-            displayWarning(paymentInputs[0].parentElement, "Please select a payment method.");
-            return false;
-        }
+            if (![...paymentInputs].some(payment => payment.checked)) {
+                displayWarning(paymentInputs[0].parentElement, "Please select a payment method.");
+                return false;
+            }
         return true;
     }
 
@@ -167,7 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const warningMessage = document.createElement("div");
         warningMessage.className = "warning";
         warningMessage.style.color = "red";
-        warningMessage.style.fontSize = "0.9em";
+        warningMessage.style.fontSize = "10px";
         warningMessage.textContent = message;
         element.parentElement.appendChild(warningMessage);
     }
