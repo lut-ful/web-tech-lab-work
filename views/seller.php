@@ -35,12 +35,11 @@ function retainSelected($field, $value, $values) {
 
 <body>
     <h2>Freelancer Registration Form</h2>
-    <form action="" method="POST" enctype="multipart/form-data">
+    <form action="submit.php" method="POST">
         <fieldset>
             <legend>Registration</legend>
 
             <table>
-                <!-- Full Name -->
                 <tr>
                     <td><label for="full_name">Full Name:</label></td>
                     <td>
@@ -48,7 +47,6 @@ function retainSelected($field, $value, $values) {
                         <?= displayError('full_name', $errors) ?>
                     </td>
                 </tr>
-                <!-- Email -->
                 <tr>
                     <td><label for="email">Email:</label></td>
                     <td>
@@ -56,7 +54,6 @@ function retainSelected($field, $value, $values) {
                         <?= displayError('email', $errors) ?>
                     </td>
                 </tr>
-                <!-- Password -->
                 <tr>
                     <td><label for="password">Password:</label></td>
                     <td>
@@ -64,7 +61,6 @@ function retainSelected($field, $value, $values) {
                         <?= displayError('password', $errors) ?>
                     </td>
                 </tr>
-                <!-- Confirm Password -->
                 <tr>
                     <td><label for="confirm_password">Confirm Password:</label></td>
                     <td>
@@ -72,7 +68,6 @@ function retainSelected($field, $value, $values) {
                         <?= displayError('confirm_password', $errors) ?>
                     </td>
                 </tr>
-                <!-- Profile Picture -->
                 <tr>
                     <td><label for="profile_picture">Profile Picture:</label></td>
                     <td>
@@ -80,7 +75,6 @@ function retainSelected($field, $value, $values) {
                         <?= displayError('profile_picture', $errors) ?>
                     </td>
                 </tr>
-                <!-- Phone -->
                 <tr>
                     <td><label for="phone">Phone Number:</label></td>
                     <td>
@@ -88,7 +82,6 @@ function retainSelected($field, $value, $values) {
                         <?= displayError('phone', $errors) ?>
                     </td>
                 </tr>
-                <!-- Date of Birth -->
                 <tr>
                     <td><label for="dob">Date of Birth:</label></td>
                     <td>
@@ -96,7 +89,6 @@ function retainSelected($field, $value, $values) {
                         <?= displayError('dob', $errors) ?>
                     </td>
                 </tr>
-                <!-- Skills -->
                 <tr>
                     <td><label for="skills">Skill:</label></td>
                     <td>
@@ -110,7 +102,6 @@ function retainSelected($field, $value, $values) {
                         <?= displayError('skills', $errors) ?>
                     </td>
                 </tr>
-                <!-- Portfolio -->
                 <tr>
                     <td><label for="portfolio">Upload Portfolio:</label></td>
                     <td>
@@ -118,7 +109,6 @@ function retainSelected($field, $value, $values) {
                         <?= displayError('portfolio', $errors) ?>
                     </td>
                 </tr>
-                <!-- Hours -->
                 <tr>
                     <td><label for="hours">Available Hours per Week:</label></td>
                     <td>
@@ -126,7 +116,6 @@ function retainSelected($field, $value, $values) {
                         <?= displayError('hours', $errors) ?>
                     </td>
                 </tr>
-                <!-- Payment Method -->
                 <tr>
                     <td>Preferred Withdraw Method:</td>
                     <td>
@@ -136,7 +125,6 @@ function retainSelected($field, $value, $values) {
                         <?= displayError('payment', $errors) ?>
                     </td>
                 </tr>
-                <!-- About You -->
                 <tr>
                     <td><label for="about_you">About You:</label></td>
                     <td>
@@ -144,7 +132,6 @@ function retainSelected($field, $value, $values) {
                         <?= displayError('about_you', $errors) ?>
                     </td>
                 </tr>
-                <!-- Terms -->
                 <tr>
                     <td><label for="terms">Agree to Terms:</label></td>
                     <td>
@@ -152,7 +139,6 @@ function retainSelected($field, $value, $values) {
                         <?= displayError('terms', $errors) ?>
                     </td>
                 </tr>
-                <!-- Submit -->
                 <tr>
                     <td colspan="2" align="center">
                         <input type="submit" value="Register">
