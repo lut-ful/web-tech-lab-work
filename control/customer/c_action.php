@@ -52,19 +52,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
         exit;
     }
 
-    // Store in DB
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-    $mydb = new mydb();
-    $conobj = $mydb->createConObject();
-
-    $result = $mydb->createUser($conobj, "user", $full_name, $email, $hashed_password, $phone, $username, $payment);
-    $mydb->closeCon($conobj);
-
-    if ($result === false) {
-        die("Error occurred while creating user.");
-    } else {
-        echo "User created successfully!";
-    }
 }
 ?>
