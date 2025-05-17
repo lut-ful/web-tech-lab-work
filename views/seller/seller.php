@@ -2,24 +2,20 @@
 $errors = [];
 $values = [];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    require_once '../control/validate_seller.php';
-    $result = validateSellerForm($_POST, $_FILES);
-    $errors = $result['errors'];
-    $values = $result['values'];
+    // Corrected path for validation file
+    include '../control/validate_seller.php';
 }
 
+// Define helper functions if not already defined
 function displayError($field, $errors) {
     return isset($errors[$field]) ? "<div style='color: red;'>{$errors[$field]}</div>" : '';
 }
-
 function retainValue($field, $values) {
     return htmlspecialchars($values[$field] ?? '');
 }
-
 function retainChecked($field, $value, $values) {
     return ($values[$field] ?? '') === $value ? 'checked' : '';
 }
-
 function retainSelected($field, $value, $values) {
     return in_array($value, $values[$field] ?? []) ? 'selected' : '';
 }
@@ -35,7 +31,8 @@ function retainSelected($field, $value, $values) {
 
 <body>
     <h2>Freelancer Registration Form</h2>
-    <form action="submit.php" method="POST">
+    <!-- Added enctype for file uploads, changed action to self -->
+    <form action="" method="POST" enctype="multipart/form-data">
         <fieldset>
             <legend>Registration</legend>
 
