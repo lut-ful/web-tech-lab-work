@@ -1,76 +1,115 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
+    padding: 20px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+.container {
+    background: white;
+    padding: 25px 30px;
+    border-radius: 10px;
+    max-width: 550px;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.error {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 5px;
 }
 
 h2 {
     color: #007BFF;
     text-align: center;
+    margin-bottom: 20px;
 }
 
-.container {
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
+form table {
     width: 100%;
-    max-width: 550px;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-collapse: separate;
+    border-spacing: 0 12px;
 }
 
 fieldset {
     border: 2px solid #007BFF;
     padding: 25px;
-    margin-bottom: 10px;
+    border-radius: 8px;
 }
 
 legend {
     font-weight: bold;
     color: #007BFF;
-}
-
-table {
-    width: 100%;
+    padding: 0 8px;
 }
 
 td {
-    padding: 8px;
     vertical-align: top;
 }
 
-input[type="text"], input[type="email"], input[type="password"], input[type="tel"], input[type="file"] {
+td:first-child {
+    width: 35%;
+    text-align: right;
+    padding-right: 10px;
+    font-weight: bold;
+}
+
+td:last-child {
+    width: 65%;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="file"] {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    display: inline-block;
+    font-size: 1em;
 }
 
 input:focus {
     border-color: #007BFF;
     outline: none;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.4);
+}
+
+input[type="checkbox"] {
+    transform: scale(1.1);
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+label[for="terms"] + label {
+    font-weight: normal;
 }
 
 .buttons {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .buttons input {
     background-color: #007BFF;
     color: white;
     border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 10px 20px;
+    border-radius: 6px;
     cursor: pointer;
-    margin: 5px;
+    font-size: 1em;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+    min-width: 120px;
 }
 
 .buttons input:hover {
