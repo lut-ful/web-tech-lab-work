@@ -1,4 +1,4 @@
-<!-- customerReg.php -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,7 +14,7 @@
         $errors = is_array($errors) ? $errors : json_decode(urldecode($errors), true);
         ?>
 
-        <form action="c_action.php" method="post" enctype="multipart/form-data">
+        <form action="../../control/customer/c_action.php" method="post" enctype="multipart/form-data">
             <fieldset>
                 <legend>Registration</legend>
                 <table>

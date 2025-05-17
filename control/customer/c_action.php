@@ -1,5 +1,5 @@
 <?php
-include 'mydb.php';
+require_once '../../model/customerRegDb.php';
 
 $errors = [];
 
@@ -12,8 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
     $confirm_password = $_POST['confirm_password'] ?? '';
     $payment = $_POST['payment'] ?? '';
     $terms = isset($_POST['terms']);
+    $profile_picture_path = '';
 
-    // Validation
     if (empty($full_name) || strlen($full_name) < 3) {
         $errors['full_name'] = 'Full Name must be at least 3 characters.';
     }
@@ -48,9 +48,41 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
 
     if (!empty($errors)) {
         $errorString = urlencode(json_encode($errors));
-        header("Location: customerReg.php?errors=$errorString");
+        header("Location: ../../views/Customer/customer_Reg.php?errors=$errorString");
         exit;
     }
 
+    $password_hash = password_hash($password, PASSWORD_DEFAULT);
+
+    $db = new mydb();
+    $conn = $db->createConObject();
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    $result = $db->registerCustomer(
+        $conn,
+        'CustomerRegistration',
+        $full_name,
+        $email,
+        $password_hash,
+        $phone,
+        $username,
+        $profile_picture_path,
+        $payment
+    );
+
+    $db->closeCon($conn);
+
+    if ($result === true) {
+        echo("Success");
+        exit;
+    } else {
+        $errors['database'] = $result;
+        $errorString = urlencode(json_encode($errors));
+        header("Location: ../../views/Customer/customer_Reg.php?errors=$errorString");
+        exit;
+    }
 }
 ?>
