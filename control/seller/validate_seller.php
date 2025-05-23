@@ -75,34 +75,7 @@ function validateSellerForm($postData, $fileData) {
     return ['errors' => $errors, 'values' => $values];
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $result = validateSellerForm($_POST, $_FILES);
-    if (!empty($result['errors'])) {
-        header('Content-Type: application/json');
-        echo json_encode(['errors' => $result['errors']]);
-    } else {
-        header('Content-Type: application/json');
-        echo json_encode(['success' => true]);
-    }
-    exit;
-}
-
 $result = validateSellerForm($_POST, $_FILES);
 $errors = $result['errors'];
 $values = $result['values'];
-function displayError($field, $errors) {
-    return isset($errors[$field]) ? "<div style='color: red;'>{$errors[$field]}</div>" : '';
-}
-
-function retainValue($field, $values) {
-    return htmlspecialchars($values[$field] ?? '');
-}
-
-function retainChecked($field, $value, $values) {
-    return ($values[$field] ?? '') === $value ? 'checked' : '';
-}
-
-function retainSelected($field, $value, $values) {
-    return in_array($value, $values[$field] ?? []) ? 'selected' : '';
-}
 ?>
