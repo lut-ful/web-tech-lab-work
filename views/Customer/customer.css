@@ -1,3 +1,4 @@
+/* Reset and base */
 * {
     box-sizing: border-box;
 }
@@ -5,122 +6,86 @@
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
+    margin: 0;
     padding: 20px;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
     min-height: 100vh;
 }
 
+/* Container */
 .container {
-    background: white;
-    padding: 25px 30px;
+    background: #fff;
+    padding: 30px 40px;
     border-radius: 10px;
-    max-width: 550px;
+    max-width: 400px;
     width: 100%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
 }
 
-.error {
-    color: red;
-    font-size: 0.9em;
-    margin-top: 5px;
-}
-
+/* Heading */
 h2 {
-    color: #007BFF;
     text-align: center;
-    margin-bottom: 20px;
-}
-
-form table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0 12px;
-}
-
-fieldset {
-    border: 2px solid #007BFF;
-    padding: 25px;
-    border-radius: 8px;
-}
-
-legend {
-    font-weight: bold;
     color: #007BFF;
-    padding: 0 8px;
+    margin-bottom: 25px;
 }
 
-td {
-    vertical-align: top;
-}
-
-td:first-child {
-    width: 35%;
-    text-align: right;
-    padding-right: 10px;
+/* Labels */
+label {
+    display: block;
     font-weight: bold;
+    margin-bottom: 6px;
+    margin-top: 15px;
 }
 
-td:last-child {
-    width: 65%;
-}
-
-input[type="text"],
+/* Inputs */
 input[type="email"],
-input[type="password"],
-input[type="tel"],
-input[type="file"] {
+input[type="password"] {
     width: 100%;
-    padding: 8px;
+    padding: 10px 12px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 1em;
+    transition: border-color 0.3s ease;
 }
 
-input:focus {
+input[type="email"]:focus,
+input[type="password"]:focus {
     border-color: #007BFF;
     outline: none;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.4);
 }
 
-input[type="checkbox"] {
-    transform: scale(1.1);
-    margin-right: 5px;
-    vertical-align: middle;
-}
-
-label[for="terms"] + label {
-    font-weight: normal;
-}
-
-.buttons {
+/* Error message */
+.error {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 0;
+    margin-bottom: 10px;
     text-align: center;
-    margin-top: 15px;
 }
 
-.buttons input {
+/* Button container */
+.buttons {
+    margin-top: 25px;
+    text-align: center;
+}
+
+/* Submit button */
+.buttons input[type="submit"] {
     background-color: #007BFF;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 25px;
     border-radius: 6px;
-    cursor: pointer;
+    font-weight: bold;
     font-size: 1em;
-    margin: 0 10px;
+    cursor: pointer;
     transition: background-color 0.3s ease;
-    min-width: 120px;
+    width: 100%;
 }
 
-.buttons input:hover {
+.buttons input[type="submit"]:hover {
     background-color: #0056b3;
-}
-
-a {
-    color: #007BFF;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
 }

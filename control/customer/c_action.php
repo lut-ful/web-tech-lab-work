@@ -1,88 +1,80 @@
 <?php
 require_once '../../model/customerRegDb.php';
 
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['register'])) {
+    header("HTTP/1.1 400 Bad Request");
+    exit("Invalid access");
+}
+
 $errors = [];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register'])) {
-    $full_name = trim($_POST['full_name'] ?? '');
-    $email = trim($_POST['email'] ?? '');
-    $phone = trim($_POST['phone'] ?? '');
-    $username = trim($_POST['username'] ?? '');
-    $password = $_POST['password'] ?? '';
-    $confirm_password = $_POST['confirm_password'] ?? '';
-    $payment = $_POST['payment'] ?? '';
-    $terms = isset($_POST['terms']);
-    $profile_picture_path = '';
+// 1) Collect & validate inputs
+$full_name        = trim($_POST['full_name']        ?? '');
+$email            = trim($_POST['email']            ?? '');
+$phone            = trim($_POST['phone']            ?? '');
+$username         = trim($_POST['username']         ?? '');
+$password         = $_POST['password']              ?? '';
+$confirm_password = $_POST['confirm_password']      ?? '';
+$payment          = $_POST['payment']               ?? '';
+$terms_agreed     = isset($_POST['terms']);
+$profile_picture_path = "";
 
-    if (empty($full_name) || strlen($full_name) < 3) {
-        $errors['full_name'] = 'Full Name must be at least 3 characters.';
-    }
+// Basic field validations
+if (strlen($full_name) < 3)       $errors['full_name']       = "Name must be ≥3 chars.";
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors['email']    = "Valid email required.";
+if ($phone !== "" && !preg_match('/^\d+$/', $phone)) $errors['phone']   = "Digits only.";
+if (strlen($username) < 4)        $errors['username']        = "Username ≥4 chars.";
+if (strlen($password) < 6)        $errors['password']        = "Password ≥6 chars.";
+if ($password !== $confirm_password) $errors['confirm_password'] = "Passwords mismatch.";
+if (!$terms_agreed)               $errors['terms']           = "You must agree to terms.";
 
-    if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors['email'] = 'Invalid email address.';
-    }
-
-    if (!empty($phone) && !preg_match('/^\d+$/', $phone)) {
-        $errors['phone'] = 'Phone number must contain digits only.';
-    }
-
-    if (empty($username) || strlen($username) < 4) {
-        $errors['username'] = 'Username must be at least 4 characters.';
-    }
-
-    if (empty($password) || strlen($password) < 8) {
-        $errors['password'] = 'Password must be at least 8 characters.';
-    }
-
-    if ($password !== $confirm_password) {
-        $errors['confirm_password'] = 'Passwords do not match.';
-    }
-
-    if (empty($payment) || !in_array($payment, ['paypal', 'bank_transfer', 'crypto'])) {
-        $errors['payment'] = 'Please select a valid payment method.';
-    }
-
-    if (!$terms) {
-        $errors['terms'] = 'You must agree to the terms.';
-    }
-
-    if (!empty($errors)) {
-        $errorString = urlencode(json_encode($errors));
-        header("Location: ../../views/Customer/customer_Reg.php?errors=$errorString");
-        exit;
-    }
-
-    $password_hash = password_hash($password, PASSWORD_DEFAULT);
-
-    $db = new mydb();
-    $conn = $db->createConObject();
-
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
-    $result = $db->registerCustomer(
-        $conn,
-        'CustomerRegistration',
-        $full_name,
-        $email,
-        $password_hash,
-        $phone,
-        $username,
-        $profile_picture_path,
-        $payment
-    );
-
-    $db->closeCon($conn);
-
-    if ($result === true) {
-        echo("Success");
-        exit;
+// Handle image upload
+if (!empty($_FILES['profile_picture']['name'])) {
+    $upload_dir = "../../uploads/";
+    if (!is_dir($upload_dir)) mkdir($upload_dir, 0755, true);
+    $target = $upload_dir . basename($_FILES['profile_picture']['name']);
+    if (!move_uploaded_file($_FILES['profile_picture']['tmp_name'], $target)) {
+        $errors['profile_picture'] = "Image upload failed.";
     } else {
-        $errors['database'] = $result;
-        $errorString = urlencode(json_encode($errors));
-        header("Location: ../../views/Customer/customer_Reg.php?errors=$errorString");
-        exit;
+        $profile_picture_path = $target;
     }
 }
-?>
+
+// 2) If any validation errors, redirect back
+if (count($errors) > 0) {
+    $errs = urlencode(json_encode($errors));
+    header("Location: ../../views/customer/customer_Reg.php?errors={$errs}");
+    exit;
+}
+
+// 3) Call model to register
+$db   = new mydb();
+$conn = null;
+try {
+    $conn = $db->createConObject();
+} catch (Exception $e) {
+    exit("DB connection error: " . $e->getMessage());
+}
+
+$hashed = password_hash($password, PASSWORD_DEFAULT);
+$result = $db->registerCustomer(
+    $conn,
+    $full_name,
+    $email,
+    $hashed,
+    $phone,
+    $username,
+    $profile_picture_path,
+    $payment
+);
+
+// 4) Handle model response
+if ($result['success']) {
+    header("Location: ../../views/customer/registration_success.php");
+    exit;
+} else {
+    $errors['general'] = $result['message'];
+    $errs = urlencode(json_encode($errors));
+    header("Location: ../../views/customer/customer_Reg.php?errors={$errs}");
+    exit;
+}
