@@ -20,7 +20,7 @@
                 <td><label for="profile_picture">Profile Picture:</label></td>
                 <td>
                     <?php if (!empty($user['profile_picture'])): ?>
-                        <img src="uploads/<?= htmlspecialchars($user['profile_picture']) ?>" alt="Profile Picture" class="img-preview">
+                        <img src="../../uploads/<?= htmlspecialchars($user['profile_picture']) ?>" alt="Profile Picture" class="img-preview">
                     <?php endif; ?>
                     <input type="file" id="profile_picture" name="profile_picture" accept="image/*">
                     <?= displayError('profile_picture', $errors) ?>
@@ -57,7 +57,7 @@
                 <td><label for="portfolio">Upload Portfolio:</label></td>
                 <td>
                     <?php if (!empty($user['portfolio'])): ?>
-                        <a href="uploads/<?= htmlspecialchars($user['portfolio']) ?>" target="_blank">View Portfolio</a>
+                        <a href="../../uploads/<?= htmlspecialchars($user['portfolio']) ?>" target="_blank">View Portfolio</a>
                     <?php endif; ?>
                     <input type="file" id="portfolio" name="portfolio">
                     <?= displayError('portfolio', $errors) ?>

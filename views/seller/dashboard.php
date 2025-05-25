@@ -61,7 +61,7 @@ function retainSelected($field, $value, $values, $user)
         }
         ?>
         <div style="text-align:center;margin-top:24px;">
-            <a href="logout.php" class="crud-btn cancel-btn">Logout</a>
+            <a href="../index.php" class="crud-btn cancel-btn">Logout</a>
         </div>
     </div>
 </body>
