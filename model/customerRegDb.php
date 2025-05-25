@@ -16,13 +16,12 @@ class mydb {
         if ($conn->connect_error) {
             throw new Exception("DB connect failed: " . $conn->connect_error);
         }
-        $conn->set_charset('utf8mb4');  // Set UTF-8 charset for connection
+        $conn->set_charset('utf8mb4');  
         return $conn;
     }
 
     public function registerCustomer($conn, $full_name, $email, $password_hash, $phone, $username, $profile_picture_path, $payment) {
         try {
-            // 1) Check for duplicate email
             $sqlCheck = "SELECT email FROM `{$this->tableName}` WHERE email = ?";
             $check = $conn->prepare($sqlCheck);
             if (!$check) {
@@ -37,7 +36,6 @@ class mydb {
             }
             $check->close();
 
-            // 2) Insert new customer
             $sqlInsert = "INSERT INTO `{$this->tableName}` 
                 (full_name, email, password, phone, username, profile_picture, payment) 
                 VALUES (?, ?, ?, ?, ?, ?, ?)";

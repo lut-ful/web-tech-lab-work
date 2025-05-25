@@ -8,7 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_POST['register'])) {
 
 $errors = [];
 
-// 1) Collect & validate inputs
 $full_name        = trim($_POST['full_name']        ?? '');
 $email            = trim($_POST['email']            ?? '');
 $phone            = trim($_POST['phone']            ?? '');
@@ -19,7 +18,6 @@ $payment          = $_POST['payment']               ?? '';
 $terms_agreed     = isset($_POST['terms']);
 $profile_picture_path = "";
 
-// Basic field validations
 if (strlen($full_name) < 3)       $errors['full_name']       = "Name must be ≥3 chars.";
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) $errors['email']    = "Valid email required.";
 if ($phone !== "" && !preg_match('/^\d+$/', $phone)) $errors['phone']   = "Digits only.";
@@ -28,7 +26,6 @@ if (strlen($password) < 6)        $errors['password']        = "Password ≥6 ch
 if ($password !== $confirm_password) $errors['confirm_password'] = "Passwords mismatch.";
 if (!$terms_agreed)               $errors['terms']           = "You must agree to terms.";
 
-// Handle image upload
 if (!empty($_FILES['profile_picture']['name'])) {
     $upload_dir = "../../uploads/";
     if (!is_dir($upload_dir)) mkdir($upload_dir, 0755, true);
@@ -40,14 +37,12 @@ if (!empty($_FILES['profile_picture']['name'])) {
     }
 }
 
-// 2) If any validation errors, redirect back
 if (count($errors) > 0) {
     $errs = urlencode(json_encode($errors));
     header("Location: ../../views/customer/customer_Reg.php?errors={$errs}");
     exit;
 }
 
-// 3) Call model to register
 $db   = new mydb();
 $conn = null;
 try {
@@ -68,7 +63,6 @@ $result = $db->registerCustomer(
     $payment
 );
 
-// 4) Handle model response
 if ($result['success']) {
     header("Location: ../../views/customer/registration_success.php");
     exit;

@@ -1,4 +1,4 @@
-/* Reset and base */
+
 * {
     box-sizing: border-box;
 }
@@ -14,7 +14,7 @@ body {
     min-height: 100vh;
 }
 
-/* Container */
+
 .container {
     background: #fff;
     padding: 30px 40px;
@@ -24,14 +24,14 @@ body {
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Heading */
+
 h2 {
     text-align: center;
     color: #007BFF;
     margin-bottom: 25px;
 }
 
-/* Labels */
+
 label {
     display: block;
     font-weight: bold;
@@ -39,7 +39,7 @@ label {
     margin-top: 15px;
 }
 
-/* Inputs */
+
 input[type="email"],
 input[type="password"] {
     width: 100%;
@@ -57,7 +57,7 @@ input[type="password"]:focus {
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.4);
 }
 
-/* Error message */
+
 .error {
     color: red;
     font-size: 0.9em;
@@ -66,13 +66,13 @@ input[type="password"]:focus {
     text-align: center;
 }
 
-/* Button container */
+
 .buttons {
     margin-top: 25px;
     text-align: center;
 }
 
-/* Submit button */
+
 .buttons input[type="submit"] {
     background-color: #007BFF;
     color: white;

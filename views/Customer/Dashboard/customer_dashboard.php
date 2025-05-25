@@ -73,8 +73,7 @@ $stmt->close();
                 <p style="color: green; font-weight: bold;"><?= htmlspecialchars($success) ?></p>
             <?php endif; ?>
 
-            <!-- Add New Project Form -->
-            <h2>Add New Project</h2>
+            <h2>Add New Project request</h2>
             <form method="POST">
                 <label for="title">Title:</label>
                 <input type="text" id="title" name="title" required>
@@ -85,8 +84,7 @@ $stmt->close();
                 <button type="submit" name="add_project" class="add">Add Project</button>
             </form>
 
-            <!-- Projects List -->
-            <h2>My Projects</h2>
+            <h2>All Project Requests</h2>
             <?php if (count($projects) > 0): ?>
                 <table class="project-list">
                     <thead>
@@ -112,7 +110,7 @@ $stmt->close();
                     </tbody>
                 </table>
             <?php else: ?>
-                <p>You have no projects yet.</p>
+                <p>You have no project request yet.</p>
             <?php endif; ?>
         </div>
     </div>

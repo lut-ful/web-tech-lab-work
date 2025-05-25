@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("../model/customerRegDb.php"); // make sure this file contains your mydb class
+require_once("../model/customerRegDb.php"); 
 
 header('Content-Type: application/json');
 
@@ -35,13 +35,12 @@ try {
     if ($user = $result->fetch_assoc()) {
         if (password_verify($password, $user['password'])) {
             $_SESSION['customer_id'] = $user['id'];
-            $_SESSION['customer_name'] = $user['full_name']; // use full_name field as name
+            $_SESSION['customer_name'] = $user['full_name']; 
             echo json_encode(["success" => true, "message" => "Login successful"]);
             exit;
         }
     }
 
-    // If no user or password does not match:
     echo json_encode(["success" => false, "message" => "Invalid email or password"]);
 
 } catch (Exception $e) {

@@ -1,7 +1,6 @@
 <?php
-// BEGIN AUTH LOGIC
 session_start();
-require_once("../../model/customerRegDb.php"); // Adjust path as needed
+require_once("../../model/customerRegDb.php"); 
 
 $loginError = "";
 
@@ -28,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (password_verify($password, $user['password'])) {
                     $_SESSION['customer_id'] = $user['id'];
                     $_SESSION['customer_name'] = $user['full_name'];
-                    header("Location: Dashboard/customer_dashboard.php"); // Change to your dashboard
+                    header("Location: Dashboard/customer_dashboard.php");
                     exit;
                 }
             }
