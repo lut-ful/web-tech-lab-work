@@ -13,7 +13,7 @@ if (!isset($_SESSION['customer_id'])) {
 
 $message = "";
 
-// Handle profile update
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_profile'])) {
     $full_name = trim($_POST['full_name']);
     $email = trim($_POST['email']);
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_profile'])) {
     $username = trim($_POST['username']);
     $payment = $_POST['payment'];
 
-    // Simple validation (you can enhance this)
+    
     if (filter_var($email, FILTER_VALIDATE_EMAIL) && !empty($full_name) && !empty($username)) {
         $stmt = $conn->prepare("UPDATE customers SET full_name=?, email=?, phone=?, username=?, payment=? WHERE id=?");
         $stmt->bind_param("sssssi", $full_name, $email, $phone, $username, $payment, $_SESSION['customer_id']);
@@ -35,21 +35,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_profile'])) {
     }
 }
 
-// Handle profile delete
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete_profile'])) {
     $stmt = $conn->prepare("DELETE FROM customers WHERE id = ?");
     $stmt->bind_param("i", $_SESSION['customer_id']);
     $stmt->execute();
     $stmt->close();
 
-    // Clear session and redirect
+    
     $_SESSION = [];
     session_destroy();
     header("Location: ../Customer/customer_login.php");
     exit;
 }
 
-// Fetch current profile data
+
 $stmt = $conn->prepare("SELECT full_name, email, phone, username, payment FROM customers WHERE id = ?");
 $stmt->bind_param("i", $_SESSION['customer_id']);
 $stmt->execute();
