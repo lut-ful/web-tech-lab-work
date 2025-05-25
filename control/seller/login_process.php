@@ -1,6 +1,6 @@
 <?php
 session_start();
-include __DIR__ . '/../../model/seller/db_crud.php';
+include  '/../../model/seller/db_crud.php';
 
 header('Content-Type: application/json');
 

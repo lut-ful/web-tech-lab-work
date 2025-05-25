@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../../model/seller/db_crud.php';
+include '../../model/seller/db_crud.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['email'])) {
     $email = $_POST['email'];
