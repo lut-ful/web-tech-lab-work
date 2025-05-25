@@ -29,9 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $skills = implode(',', $_POST['skills']);
     }
 
-    // // Hash password
-    // $password = password_hash($password_raw, PASSWORD_DEFAULT);
-
     // Handle file uploads
     $profile_picture_path = "NULL";
     if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {

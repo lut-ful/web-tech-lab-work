@@ -1,7 +1,6 @@
 <?php
 include "../../control/seller/reg_process.php";
-// include "../../control/seller/validate_seller.php";
-// Define helper functions if not already defined
+
 function displayError($field, $errors)
 {
     return isset($errors[$field]) ? "<div style='color: red;'>{$errors[$field]}</div>" : '';
@@ -30,7 +29,6 @@ function retainSelected($field, $value, $values)
 
 <body>
     <h2>Freelancer Registration Form</h2>
-    <!-- Added enctype for file uploads, changed action to self -->
     <form action="" method="POST" enctype="multipart/form-data">
         <fieldset>
             <legend>Registration</legend>

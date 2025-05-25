@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const form = document.querySelector("form");
 
-    // Collect all input elements
     const fields = {
         fullName: document.getElementById("full_name"),
         email: document.getElementById("email"),
@@ -18,14 +17,11 @@ document.addEventListener("DOMContentLoaded", () => {
         termsAndConditions: document.getElementById("terms"),
     };
 
-    // event listener for form submission
     form.addEventListener("submit", (event) => {
         let isFormValid = true;
 
-        // Clear any existing warnings
         document.querySelectorAll(".warning").forEach(warning => warning.remove());
 
-        // Validate each field
         if (!validateFullName(fields.fullName)) isFormValid = false;
         if (!validateEmail(fields.email)) isFormValid = false;
         if (!validatePassword(fields.password)) isFormValid = false;
@@ -40,13 +36,11 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!validateAboutYouSection(fields.aboutYou)) isFormValid = false;
         if (!validateTermsAgreement(fields.termsAndConditions)) isFormValid = false;
 
-        // Prevent form submission if validation fails
         if (!isFormValid) {
             event.preventDefault();
         }
     });
 
-    // Validation functions
     function validateFullName(input) {
         if (!input.value.trim()) {
             displayWarning(input, "Please enter your full name.");
@@ -162,7 +156,6 @@ document.addEventListener("DOMContentLoaded", () => {
         return true;
     }
 
-    // Helper function to display warnings
     function displayWarning(element, message) {
         const warningMessage = document.createElement("div");
         warningMessage.className = "warning";
