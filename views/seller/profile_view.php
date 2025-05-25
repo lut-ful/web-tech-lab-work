@@ -1,7 +1,7 @@
 <div class="profile-card">
     <div class="profile-header">
         <?php if (!empty($user['profile_picture'])): ?>
-            <img src="uploads/<?= htmlspecialchars($user['profile_picture']) ?>" alt="Profile Picture" class="profile-avatar">
+            <img src="../../uploads/<?= htmlspecialchars($user['profile_picture']) ?>" alt="Profile Picture" class="profile-avatar">
         <?php else: ?>
             <div class="profile-avatar profile-avatar-placeholder"></div>
         <?php endif; ?>
@@ -17,11 +17,11 @@
         <div><span class="profile-label">About You:</span>
             <div class="profile-about"><?= nl2br(htmlspecialchars($user['about_you'])) ?></div>
         </div>
-        <?php if (!empty($user['portfolio'])): ?>
-            <div><span class="profile-label">Portfolio:</span>
-                <a href="uploads/<?= htmlspecialchars($user['portfolio']) ?>" target="_blank" class="profile-portfolio-link">View Portfolio</a>
-            </div>
-        <?php endif; ?>
+<?php if (!empty($user['portfolio'])): ?>
+    <div><span class="profile-label">Portfolio:</span>
+        <a href="../../uploads/<?= htmlspecialchars($user['portfolio']) ?>" target="_blank" class="profile-portfolio-link">View Portfolio</a>
+    </div>
+<?php endif; ?>
     </div>
     <div class="profile-actions">
         <a href="dashboard.php?edit=1" class="crud-btn edit-btn">Edit Profile</a>

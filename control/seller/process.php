@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
         $ext = pathinfo($_FILES['profile_picture']['name'], PATHINFO_EXTENSION);
         $filename = uniqid('profile_') . '.' . $ext;
-        $target = '../../views/seller/uploads/' . $filename;
+        $target = '../../uploads/' . $filename;
         if (move_uploaded_file($_FILES['profile_picture']['tmp_name'], $target)) {
             $values['profile_picture'] = $filename;
         } else {
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     if (isset($_FILES['portfolio']) && $_FILES['portfolio']['error'] === UPLOAD_ERR_OK) {
         $ext = pathinfo($_FILES['portfolio']['name'], PATHINFO_EXTENSION);
         $filename = uniqid('portfolio_') . '.' . $ext;
-        $target = '../../views/seller/uploads/' . $filename;
+        $target = '../../uploads/' . $filename;
         if (move_uploaded_file($_FILES['portfolio']['tmp_name'], $target)) {
             $values['portfolio'] = $filename;
         } else {
