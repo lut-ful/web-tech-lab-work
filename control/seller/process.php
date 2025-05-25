@@ -6,21 +6,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $errors = [];
     $values = [];
 
-    // Collect and sanitize input
     $fields = [
         'full_name', 'email', 'phone', 'dob', 'hours', 'payment', 'about_you'
     ];
     foreach ($fields as $field) {
         $values[$field] = trim($_POST[$field] ?? '');
     }
-    // Skills (multi-select)
     $values['skills'] = isset($_POST['skills']) ? $_POST['skills'] : [];
-    // Portfolio and profile picture (file upload)
     $user = $_SESSION['user'];
     $values['profile_picture'] = $user['profile_picture'] ?? '';
     $values['portfolio'] = $user['portfolio'] ?? '';
 
-    // Handle profile_picture upload
     if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
         $ext = pathinfo($_FILES['profile_picture']['name'], PATHINFO_EXTENSION);
         $filename = uniqid('profile_') . '.' . $ext;
@@ -32,7 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         }
     }
 
-    // Handle portfolio upload
     if (isset($_FILES['portfolio']) && $_FILES['portfolio']['error'] === UPLOAD_ERR_OK) {
         $ext = pathinfo($_FILES['portfolio']['name'], PATHINFO_EXTENSION);
         $filename = uniqid('portfolio_') . '.' . $ext;
@@ -44,7 +39,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         }
     }
 
-    // Validation (example: add more as needed)
     if ($values['full_name'] === '') $errors['full_name'] = 'Full name is required.';
     if ($values['email'] === '' || !filter_var($values['email'], FILTER_VALIDATE_EMAIL)) $errors['email'] = 'Valid email is required.';
     if ($values['phone'] === '') $errors['phone'] = 'Phone is required.';
@@ -54,7 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     if ($values['payment'] === '') $errors['payment'] = 'Select a payment method.';
     if ($values['about_you'] === '') $errors['about_you'] = 'About you is required.';
 
-    // Convert skills array to comma-separated string for DB
     $skills_str = is_array($values['skills']) ? implode(',', $values['skills']) : $values['skills'];
 
     if ($errors) {
@@ -64,7 +57,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         exit();
     }
 
-    // Update seller in DB
     $old_email = $_POST['old_email'] ?? $values['email'];
     $updateData = [
         'full_name' => $values['full_name'],
@@ -81,7 +73,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
     $result = updateSeller($old_email, $updateData, $conn);
 
     if ($result) {
-        // Refresh session user data
         $updatedUser = getSellerByEmail($values['email'], $conn);
         $_SESSION['user'] = $updatedUser;
         header('Location: ../../views/seller/dashboard.php');

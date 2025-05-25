@@ -11,7 +11,7 @@ $response = ['success' => false, 'message' => ''];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($email && $password) {
         $user = getSellerByEmail($email, $conn);
-        if ($user && $password === $user['password']) {
+        if ($user && password_verify($password, $user['password'])) {
             $_SESSION['user'] = $user;
             $response['success'] = true;
             $response['message'] = 'Login successful';

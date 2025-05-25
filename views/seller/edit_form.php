@@ -81,12 +81,15 @@
             </tr>
             <tr>
                 <td><label for="about_you">About You:</label></td>
-                 
+                <td>
+                    <textarea id="about_you" name="about_you" rows="4" cols="50"><?= retainValue('about_you', $values, $user) ?></textarea>
+                    <?= displayError('about_you', $errors) ?>
+                </td>
             </tr>
             <tr>
                 <td colspan="2" align="center">
-                    <input type="hidden" name="action" value="update"><!-- Added for CRUD update -->
-                    <input type="hidden" name="old_email" value="<?= htmlspecialchars($user['email']) ?>"><!-- Use old_email for identification -->
+                    <input type="hidden" name="action" value="update">
+                    <input type="hidden" name="old_email" value="<?= htmlspecialchars($user['email']) ?>">
                     <input type="submit" value="Save All">
                     <input type="reset" value="Reset">
                     <a href="seller_dashboard.php" class="cancel-btn" style="text-decoration:none;">Cancel</a>
